@@ -1,0 +1,48 @@
+namespace lessons //Домашнє завдання ООП тема 3
+{
+    abstract class Planet
+    {
+        public abstract void ReportAboutMovement();
+
+        public abstract void ReportAboutLife();
+    }
+
+    class Earh : Planet
+    {
+        public override void ReportAboutMovement()
+        {
+            Console.WriteLine("Земля рухається навколо зірки Соньце");
+        }
+
+        public override void ReportAboutLife()
+        {
+            Console.WriteLine("Земля має життя");
+        }
+    }
+
+    class Moon : Planet
+    {
+        public override void ReportAboutMovement()
+        {
+            Console.WriteLine("Місяць рухається навколо планети Земля");
+        }
+
+        public override void ReportAboutLife()
+        {
+            Console.WriteLine("Місяць не має життя");
+        }
+    }
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            Planet[] space_object = {new Earh(), new Moon()};
+
+            foreach (var i in space_object)
+            {
+                i.ReportAboutMovement();
+                i.ReportAboutLife();
+            }
+        }
+    }
+}
