@@ -1,0 +1,78 @@
+using System.Xml.Linq;
+
+namespace lessons //Домашнє завдання ООП тема 4
+{
+    class Automobile
+    {
+        private int speed;
+        private string name;
+
+        public int Speed
+        {
+            get 
+            {
+                return speed;
+            }
+            set
+            {
+                if (value != 0) speed = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        
+
+        public Automobile() 
+        { 
+            speed = 0;
+            name = "noname";
+        }
+        public Automobile(int userspeed, string usersname)
+        {
+            if (userspeed > 0) speed = userspeed;
+            name = usersname;
+        }
+
+        public Automobile Compare(Automobile another)
+        {
+            if (this.speed > another.speed) return this;
+            else return another;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Name: {name}\t\tSpeed: {speed}");
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] speed = { 200, 210, 230, 250, 300 };
+            string[] names = { "Volvo", "Mazda", "Toyota", "Shevrolet", "Daewoo matiz" };
+            Automobile faster = new Automobile();
+
+            List<Automobile> automobiles = new List<Automobile>();
+            
+            for (int i = 0; i < 5; i++)
+            {
+                automobiles.Add(new Automobile(speed[i], names[i]));
+            }
+            foreach (Automobile i in automobiles)
+            {
+                i.Print();
+                faster = i.Compare(i);
+            }
+            Console.WriteLine($"\n\nThe fastest automobile: {faster.Name}");
+        }
+    }
+}
