@@ -1,0 +1,95 @@
+namespace lessons //Домашнє завдання ООП тема 5
+{
+    class Automobile
+    {
+        private int speed;
+        private string name;
+
+        public int Speed
+        {
+            get 
+            {
+                return speed;
+            }
+            set
+            {
+                if (value > 0) speed = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        
+
+        public Automobile() 
+        { 
+            speed = 0;
+            name = "noname";
+        }
+        public Automobile(int userspeed, string usersname)
+        {
+            if (userspeed > 0) speed = userspeed;
+            name = usersname;
+        }
+
+        public Automobile Compare(Automobile another)
+        {
+            if (this.speed > another.speed) return this;
+            else return another;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Name: {name}\t\tSpeed: {speed}");
+        }
+    }
+    class Program
+    { 
+        static void Main(string[] args)
+        {
+            int speed;
+            string name;
+            Automobile faster = new Automobile();
+
+            List<Automobile> automobiles = new List<Automobile>();
+
+            try
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.Write("Input speed: ");
+                    speed = Convert.ToInt32(Console.ReadLine());
+                    if (speed < 0 || speed > 300)
+                    {
+                        string s = "Inappropriate speed value. Normal: 0 - 300 km/h";
+                        throw new Exception(s);
+                    }
+
+                    Console.Write("Input name: ");
+                    name = Console.ReadLine();
+
+                    automobiles.Add(new Automobile(speed, name));
+                    Console.WriteLine("\n\n");
+                }
+                foreach (Automobile i in automobiles)
+                {
+                    i.Print();
+                    faster = i.Compare(i);
+                }
+                Console.WriteLine($"\n\nThe fastest automobile: {faster.Name}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }  
+        }
+    }
+}
