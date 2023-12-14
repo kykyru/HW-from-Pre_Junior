@@ -15,7 +15,7 @@ namespace lessons //Домашнє завдання ООП тема 4
             }
             set
             {
-                if (value != 0) speed = value;
+                if (value > 0) speed = value;
             }
         }
         public string Name
